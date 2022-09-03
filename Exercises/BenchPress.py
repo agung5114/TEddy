@@ -42,7 +42,8 @@ def start(sets, reps):
                 ret, frame = cap.read()
                 
                 # Recolor image to RGB
-                image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+#                 image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                image = frame
                 image.flags.writeable = False
             
                 # Make detection
@@ -50,7 +51,7 @@ def start(sets, reps):
             
                 # Recolor back to BGR
                 image.flags.writeable = True
-                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+#                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 
                 # Extract landmarks
                 try:
@@ -120,8 +121,8 @@ def start(sets, reps):
     cv2.putText(image, 'FINISHED EXERCISE', (100,250), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255,255,255), 3, cv2.LINE_AA)
     cv2.putText(image, 'REST FOR 60s' , (155,350), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255,255,255), 3, cv2.LINE_AA)   
     # cv2.imshow('Mediapipe Feed', image)
-#     frameshow = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    FRAME_WINDOW.image(image)
+    frameshow = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    FRAME_WINDOW.image(frameshow)
     cv2.waitKey(1) 
     time.sleep(60)                      
     cap.release()
