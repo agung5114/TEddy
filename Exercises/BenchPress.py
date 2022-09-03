@@ -26,8 +26,8 @@ def calculate_angle(a,b,c):
 
 def start(sets, reps):
     FRAME_WINDOW = st.image([])
-    cap = cv2.VideoCapture(0)
-    # cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+#     cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     sets_counter = 0 
 
     while sets_counter < sets:
