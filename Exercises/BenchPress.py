@@ -26,8 +26,8 @@ def calculate_angle(a,b,c):
 
 def start(sets, reps):
     FRAME_WINDOW = st.image([])
-    cap = cv2.VideoCapture(0)
-#     cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+#     cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     sets_counter = 0 
 
     while sets_counter < sets:
@@ -42,8 +42,8 @@ def start(sets, reps):
                 ret, frame = cap.read()
                 
                 # Recolor image to RGB
-#                 image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                image = frame
+                image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+#                 image = frame
                 image.flags.writeable = False
             
                 # Make detection
@@ -51,7 +51,7 @@ def start(sets, reps):
             
                 # Recolor back to BGR
                 image.flags.writeable = True
-#                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 
                 # Extract landmarks
                 try:
