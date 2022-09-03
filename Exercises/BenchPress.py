@@ -5,7 +5,57 @@ import mediapipe as mp
 import numpy as np
 import time
 import streamlit as st
+from vidgear.gears.asyncio import WebGear_RTC
+class Custom_Stream_Class:
+    """
+    Custom Streaming using OpenCV
+    """
 
+    def __init__(self, source=0):
+
+        # !!! define your own video source here !!!
+        self.source = cv2.VideoCapture(source)
+
+        # define running flag
+        self.running = True
+
+    def read(self):
+
+        # don't forget this function!!!
+
+        # check if source was initialized or not
+        if self.source is None:
+            return None
+        # check if we're still running
+        if self.running:
+            # read frame from provided source
+            (grabbed, frame) = self.source.read()
+            # check if frame is available
+            if grabbed:
+
+                # do something with your OpenCV frame here
+
+                # lets convert frame to gray for this example
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+                # return our gray frame
+                return gray
+            else:
+                # signal we're not running now
+                self.running = False
+        # return None-type
+        return None
+
+    def stop(self):
+
+        # don't forget this function!!!
+
+        # flag that we're not running
+        self.running = False
+        # close stream
+        if not self.source is None:
+            self.source.release()
+            
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
@@ -26,6 +76,7 @@ def calculate_angle(a,b,c):
 
 def start(sets, reps):
     FRAME_WINDOW = st.image([])
+    Custom_Stream_Class(source=FRAME_WINDOW)
 #     cap = cv2.VideoCapture(0)
     cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     sets_counter = 0 
