@@ -141,4 +141,4 @@ widgetsnbextension==3.5.1
 wrapt==1.12.1
 zipp==3.8.0
 #pyttsx3
-opencv-python-headless
+opencv-python-headless==4.5.5.64
